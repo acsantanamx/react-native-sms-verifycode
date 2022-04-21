@@ -354,6 +354,7 @@ class VerifyCode extends Component {
             this.onChangeText(text);
             // onInputCompleted(text)
           }}
+          textContentType="oneTimeCode"
         />
         <CodeView
           focused={focused}
