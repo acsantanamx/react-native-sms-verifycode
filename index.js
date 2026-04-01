@@ -28,6 +28,7 @@ import {
 } from './util';
 
 class VerifyCode extends Component {
+  appStateSubscription = null;
   constructor(props) {
     super(props);
     const {
@@ -61,13 +62,15 @@ class VerifyCode extends Component {
       'keyboardDidHide',
       this.keyboardDidHide.bind(this),
     );
-    AppState.addEventListener('change', this.onAppStateChange);
+    this.appStateSubscription = AppState.addEventListener('change', this.onAppStateChange);
   }
 
   componentWillUnmount() {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
-    AppState.removeEventListener('change', this.onAppStateChange);
+    if (this.appStateSubscription) {
+      this.appStateSubscription.remove(); 
+    }
     if(this.timeout) {
       clearTimeout(this.timeout);
     }
