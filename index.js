@@ -44,7 +44,7 @@ class VerifyCode extends Component {
     const codeArray = getCodeArray(codes, verifyCodeLength);
     const reducer = (accumulator, currentValue) => `${accumulator}${currentValue}`;
     this.state = {
-      text: codes.reduce(reducer),
+      text: codes.reduce(reducer, ''),
       codeArray,
       coverBGColorList: this.getCoverBGColorList(codeArray, verifyCodeLength),
       focused: autoFocus,
@@ -87,7 +87,7 @@ class VerifyCode extends Component {
       const codeArray = getCodeArray(codes, this.props.verifyCodeLength);
       const reducer = (accumulator, currentValue) => `${accumulator}${currentValue}`;
       this.setState({
-        text: codes.reduce(reducer),
+        text: codes.reduce(reducer, ''),
         codeArray,
         coverBGColorList: this.getCoverBGColorList(codeArray, this.props.verifyCodeLength),
         focused: this.props.autoFocus,
